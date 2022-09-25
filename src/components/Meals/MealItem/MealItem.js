@@ -1,5 +1,5 @@
 import React from "react";
-
+import MealItemForm from "./MealItemForm";
 import classes from "./MealItem.module.css";
 
 const MealItem = (props) => {
@@ -16,7 +16,7 @@ const MealItem = (props) => {
       </div>
       {/* form to enter the amount meals and add to cart button */}
       <div>
-        
+        <MealItemForm />
       </div>
     </li>
   );
