@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import MealItemForm from "./MealItemForm";
 import classes from "./MealItem.module.css";
+import CartContext from "../../../store/cart-context"
 
 const MealItem = (props) => {
   //first $ to output character dollar signs
   //second inject dynamic content to template literals
+  const CartCtx = useContext(CartContext);
   const price = `$${props.price.toFixed(2)}`;
+
+  const addToCartHandler = amount => {
+    CartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price
+    });
+  };
 
   return (
     <li className={classes.meal}>
@@ -16,7 +27,7 @@ const MealItem = (props) => {
       </div>
       {/* form to enter the amount meals and add to cart button */}
       <div>
-        <MealItemForm />
+        <MealItemForm onAddToCart={addToCartHandler} />
       </div>
     </li>
   );
